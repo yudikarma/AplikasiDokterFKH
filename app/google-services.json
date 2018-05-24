@@ -1,0 +1,107 @@
+{
+  "project_info": {
+    "project_number": "550942380932",
+    "firebase_url": "https://tanyadokterhewan-a4e82.firebaseio.com",
+    "project_id": "tanyadokterhewan-a4e82",
+    "storage_bucket": "tanyadokterhewan-a4e82.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:550942380932:android:2c6920c7a9fe904c",
+        "android_client_info": {
+          "package_name": "com.example.jon_snow.tanyadokterhewan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "550942380932-2bt7r62v4thsffja3i0b8134l9qllge5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jon_snow.tanyadokterhewan",
+            "certificate_hash": "9b743c424b1b8416a915262eb1e3d2bd71dd644f"
+          }
+        },
+        {
+          "client_id": "550942380932-3r1vds7fmic89hn3ec1tm57024aa2jom.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jon_snow.tanyadokterhewan",
+            "certificate_hash": "03579f771f8656634e4150d7a81aa0542b83c27c"
+          }
+        },
+        {
+          "client_id": "550942380932-i23vjtgif69ovcv8avkiasr18lgake44.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFpKOgyfRNVxoozPWQh4sYRoRYfUNGZVo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "550942380932-i23vjtgif69ovcv8avkiasr18lgake44.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:550942380932:android:df1b41c13902a73d",
+        "android_client_info": {
+          "package_name": "com.example.yudikarma.aplikasidokterfkh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "550942380932-ou4g7et5a2k47a7ni1dlehtqv4l3u7m4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.yudikarma.aplikasidokterfkh",
+            "certificate_hash": "9b743c424b1b8416a915262eb1e3d2bd71dd644f"
+          }
+        },
+        {
+          "client_id": "550942380932-i23vjtgif69ovcv8avkiasr18lgake44.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFpKOgyfRNVxoozPWQh4sYRoRYfUNGZVo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "550942380932-i23vjtgif69ovcv8avkiasr18lgake44.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
