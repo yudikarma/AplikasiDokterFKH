@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.ProfilActivity">
+
+
+    <TextView
+        android:id="@+id/profil_displayname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="225dp"
+        android:text="Display_name"
+        android:textColor="@android:color/background_light"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/profil_satus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profil_displayname"
+        android:layout_centerHorizontal="true"
+        android:text="Display_name"
+        android:textColor="@color/colorTransparentWhite"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/profil_totalfriend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="95dp"
+        android:text="total_friend"
+        android:textColor="@color/orangemuda"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/profil_image2"
+        android:layout_width="match_parent"
+        android:layout_height="216dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@drawable/colapsing_bacground" />
+
+    <ImageView
+        android:id="@+id/profil_image"
+        android:layout_width="match_parent"
+        android:layout_height="213dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
+
+    <Button
+        android:id="@+id/profil_btn_sendrequest"
+        android:layout_width="180dp"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="56dp"
+        android:background="@color/fui_bgPhone"
+        android:text="Send Friend Request" />
+
+    <Button
+        android:id="@+id/profil_btn_decline"
+        android:layout_width="236dp"
+        android:layout_height="35dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="11dp"
+        android:background="@color/fui_bgPhone"
+        android:text="Decline Friend Request" />
+
+</RelativeLayout>

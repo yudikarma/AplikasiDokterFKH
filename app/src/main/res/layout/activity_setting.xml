@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.SettingActivity"
+    android:background="@drawable/main_background">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:src="@drawable/default_avatar"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:id="@+id/circleImageView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/circleImageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="21dp"
+        android:text="@string/display_name_setting"
+        android:textColor="#fff"
+        android:textSize="18dp"
+        android:id="@+id/display_name_setting" />
+
+    <TextView
+        android:id="@+id/status_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="@string/status_setting"
+        android:textColor="#fff"
+        android:textSize="11dp" />
+
+    <Button
+        android:id="@+id/change_image_setting"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_above="@+id/changestatus_settinng"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="17dp"
+        android:layout_marginEnd="10dp"
+
+        android:layout_marginStart="10dp"
+        android:background="@color/green"
+        android:paddingEnd="15dp"
+        android:paddingStart="15dp"
+        android:text="Change Image"
+        android:textColor="@color/cardview_light_background" />
+
+    <Button
+        android:id="@+id/changestatus_settinng"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="21dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:background="@color/orangetua"
+        android:paddingEnd="15dp"
+        android:paddingStart="15dp"
+        android:text="Change Status"
+        android:textColor="@color/colorWhite" />
+
+
+</RelativeLayout>
