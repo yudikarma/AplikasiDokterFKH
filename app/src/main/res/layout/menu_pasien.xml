@@ -119,6 +119,7 @@
                     android:background="@color/colorWhitemuda">
 
                     <LinearLayout
+                        android:id="@+id/pindahToVerifikasi"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"

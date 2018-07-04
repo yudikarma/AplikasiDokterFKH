@@ -83,7 +83,7 @@ public class FriendsFragment extends Fragment {
         mFriendsList.setLayoutManager(new LinearLayoutManager(getContext()));
 
         /* Query query = FirebaseDatabase.getInstance().getReference().child("Users").limitToLast(50);*/
-        Query query2 = FirebaseDatabase.getInstance().getReference().child("Friends").child(mCurrent_user_id).limitToLast(50);
+        Query query2 = FirebaseDatabase.getInstance().getReference().child("Friends").child(mCurrent_user_id).orderByChild("date").limitToLast(50);
 /*
         FirebaseRecyclerOptions<Friends> options =
                 new FirebaseRecyclerOptions.Builder<Friends>()

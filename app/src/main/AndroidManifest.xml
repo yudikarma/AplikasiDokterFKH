@@ -27,12 +27,10 @@
         <activity
             android:name=".Activity.RegisterActivity"
             android:parentActivityName=".Activity.LoginActivity" />
-        <activity android:name=".Activity.FlashScreen"/>
-
+        <activity android:name=".Activity.FlashScreen" />
         <activity
             android:name=".Activity.LoginActivity"
             android:label="@string/title_activity_login" />
-
         <activity
             android:name=".Activity.SettingActivity"
             android:parentActivityName=".Activity.MainActivity" />
@@ -44,8 +42,7 @@
             android:theme="@style/Base.Theme.AppCompat" />
         <activity
             android:name=".Activity.ChatActivity2"
-            android:parentActivityName=".Activity.MainActivity"
-            />
+            android:parentActivityName=".Activity.MainActivity" />
         <activity
             android:name=".Activity.UsersActivity"
             android:parentActivityName=".Activity.MainActivity" />
@@ -62,13 +59,19 @@
             </intent-filter>
         </service>
 
-
-        <activity android:name=".Fragment.ChatFragment"
-            android:parentActivityName=".Activity.MainActivity"/>
-        <activity android:name=".Fragment.FriendsFragment"
-            android:parentActivityName=".Activity.MainActivity"/>
-        <activity android:name=".Fragment.RequestsFragment"
-            android:parentActivityName=".Activity.MainActivity"></activity>
+        <activity
+            android:name=".Fragment.ChatFragment"
+            android:parentActivityName=".Activity.MainActivity" />
+        <activity
+            android:name=".Fragment.FriendsFragment"
+            android:parentActivityName=".Activity.MainActivity" />
+        <activity
+            android:name=".Fragment.RequestsFragment"
+            android:parentActivityName=".Activity.MainActivity" />
+        <activity android:name=".Activity.ListVerivikasiBerobat" />
+        <activity android:name=".Activity.DetailVerifikasi"
+            android:parentActivityName=".Activity.ListVerivikasiHewanBerobat"/>
+        <activity android:name=".Activity.ListVerivikasiHewanBerobat"></activity>
     </application>
 
 </manifest>

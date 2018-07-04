@@ -76,7 +76,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         /* ====================== INI BAGIAN ATUR SETDISPLAY NAME AND DISPLAYPROFILIMAGE ==============================*/
         /*mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(from_user);*/
         mUserDatabase = FirebaseDatabase.getInstance().getReference().child("UserCampur").child(from_user);
-        mUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+        mUserDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String name = dataSnapshot.child("name").getValue().toString();
@@ -88,7 +88,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.i("error", databaseError.getMessage());
 
             }
         });

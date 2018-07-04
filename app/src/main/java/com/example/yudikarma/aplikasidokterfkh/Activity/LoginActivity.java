@@ -16,13 +16,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.yudikarma.aplikasidokterfkh.Model.Users;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.example.yudikarma.aplikasidokterfkh.R;
 
@@ -77,14 +81,44 @@ public class LoginActivity extends AppCompatActivity {
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = mEmailView.getText().toString();
-                String password = mPasswordView.getText().toString();
+                final String email = mEmailView.getText().toString();
+                final String password = mPasswordView.getText().toString();
                 if (!TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
                     mpProgressDialog.setTitle("login..");
                     mpProgressDialog.setMessage("we are try connect your acount..");
                     mpProgressDialog.setCanceledOnTouchOutside(false);
                     mpProgressDialog.show();
-                    loginUser(email,password);
+
+                    muserDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.exists()){
+
+                                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                                    Users users = dataSnapshot1.getValue(Users.class);
+                                    if (users.getEmail().equals(email)){
+                                        loginUser(email, password);
+                                    }else{
+                                        mpProgressDialog.hide();
+                                        Toast.makeText(LoginActivity.this, "Not found User", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                            }else{
+                                mpProgressDialog.hide();
+                                Toast.makeText(LoginActivity.this, "Database not exies", Toast.LENGTH_SHORT).show();
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            mpProgressDialog.hide();
+                            Toast.makeText(LoginActivity.this, "Database Error", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+
                 }else {
                     mpProgressDialog.hide();
                     Toast.makeText(LoginActivity.this,"please insert your email and password login",Toast.LENGTH_SHORT).show();

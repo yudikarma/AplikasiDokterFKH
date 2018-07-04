@@ -82,14 +82,16 @@ public class ChatFragment extends Fragment{
         mConvDatabase.keepSynced(true);
         mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child("Pasien"); //=> change from DOkters
         mMessageDatabase = FirebaseDatabase.getInstance().getReference().child("messages").child(mCurrent_user_id);
+        mMessageDatabase.keepSynced(true);
         mUsersDatabase.keepSynced(true);
         mUserRef = FirebaseDatabase.getInstance().getReference().child("Users").child("Dokters").child(mAuth.getCurrentUser().getUid()); //=> user yang login
+        mUserRef.keepSynced(true);
 
         mConvList.setHasFixedSize(true);
         mConvList.setLayoutManager(new LinearLayoutManager(getContext()));
 
         //Query
-        Query conversationQuery = mConvDatabase.orderByChild("timestamp");
+        Query conversationQuery = mConvDatabase.orderByChild("timestamp").limitToLast(50);
 
         FirebaseRecyclerOptions<Conv> options =
                 new FirebaseRecyclerOptions.Builder<Conv>()

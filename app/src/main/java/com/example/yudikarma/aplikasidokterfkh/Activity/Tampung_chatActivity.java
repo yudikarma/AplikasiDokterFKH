@@ -164,10 +164,10 @@ public class Tampung_chatActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String online = dataSnapshot.child("online").getValue().toString();
-                String image = dataSnapshot.child("image").getValue().toString();
+               /* String image = dataSnapshot.child("image").getValue().toString();*/
 
 
-                setMcCircleImageView(image);
+                /*setMcCircleImageView(image);*/
 
                 if (online.equals("true")){
                     mLastView.setText("Online");

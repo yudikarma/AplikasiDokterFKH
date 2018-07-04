@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
    // private Toolbar mtToolbar;
     private Toolbar mtToolbar;
     private LinearLayout pindahToChat;
+    private  LinearLayout pindahToVerifikasiBerobat;
     private DatabaseReference mUserRef;
 
 
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         }
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         mAuth = FirebaseAuth.getInstance();
+
         if (mAuth.getCurrentUser() != null) {
 
 
@@ -59,6 +61,17 @@ public class MainActivity extends AppCompatActivity {
                 Intent i = new Intent(MainActivity.this, ChatActivity2.class);
                 //i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(i);
+            }
+        });
+
+
+        pindahToVerifikasiBerobat = findViewById(R.id.pindahToVerifikasi);
+        pindahToVerifikasiBerobat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,ListVerivikasiBerobat.class);
+                startActivity(intent);
+
             }
         });
 
