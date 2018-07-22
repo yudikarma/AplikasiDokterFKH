@@ -48,7 +48,7 @@ public class ChangeStatus extends AppCompatActivity {
         });
         status = findViewById(R.id.edittextstatus);
         simpan = findViewById(R.id.simpan);
-        back = findViewById(R.id.batal);
+
         final String userid = getIntent().getStringExtra("iduser");
         String statuss = getIntent().getStringExtra("status");
        /* status.setText(statuss);*/

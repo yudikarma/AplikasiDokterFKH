@@ -28,12 +28,12 @@ import java.util.Map;
 
 public class DetailVerifikasi extends AppCompatActivity {
 
-    private TextView tnamapemilik,tnohp,tnamadokter,tgejala,tdugaan,ttanggalrekam,talamatpemilik,tnamahewan,tjenishewan,tjeniskelamin,tras,twarnabulu,tumur,tttl,talamathewan;
+    private TextView tnamapemilik,tnohp,tnamadokter,tgejala,tdugaan,ttanggalrekam,talamatpemilik,tnamahewan,tjenishewan,tjeniskelamin,tras,twarnabulu,tumur,tttl,talamathewan,txtdiagnosapenyakit,txtterapipenyakit,txtdokterperiksa,txttanggalperiksa;
     private DatabaseReference mRootDatabaseReference;
     private TextInputEditText penyakitdiderita,terapi;
     private Button simpan,kembali;
     private String sterapi,spenyakitdiderita;
-    private LinearLayout lpenyakit,lterapi;
+    private LinearLayout lpenyakit,lterapi,tpenyakit,tterapi,tdokterperiksa,ttanggalperiksa;
     private TextView diisisaat;
     private Toolbar toolbar;
     private String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -70,7 +70,7 @@ public class DetailVerifikasi extends AppCompatActivity {
         twarnabulu = findViewById(R.id.dwarnabulu);
         tumur = findViewById(R.id.dumur);
         tttl = findViewById(R.id.dttl);
-        talamathewan = findViewById(R.id.dalamat);
+        /*talamathewan = findViewById(R.id.dalamat);*/
         lpenyakit = findViewById(R.id.lpenyakitdiderita);
         lterapi = findViewById(R.id.lterapi);
         lpenyakit.setVisibility(View.GONE);
@@ -78,6 +78,18 @@ public class DetailVerifikasi extends AppCompatActivity {
         simpan.setVisibility(View.GONE);
         diisisaat = findViewById(R.id.isisaarpemeriksaan);
         diisisaat.setVisibility(View.GONE);
+        tpenyakit = findViewById(R.id.txtdiagnosa);
+        tterapi  = findViewById(R.id.txtterapi);
+        tpenyakit.setVisibility(View.GONE);
+        tterapi.setVisibility(View.GONE);
+        txtdiagnosapenyakit = findViewById(R.id.dtxtdiagnosapenyakit);
+        txtterapipenyakit = findViewById(R.id.dtxtterapipenyakit);
+        tdokterperiksa = findViewById(R.id.txtnamadokter);
+        tdokterperiksa.setVisibility(View.GONE);
+        ttanggalperiksa = findViewById(R.id.txttglperiksa);
+        ttanggalperiksa.setVisibility(View.GONE);
+        txtdokterperiksa = findViewById(R.id.dtxtnamadokterperiksa);
+        txttanggalperiksa = findViewById(R.id.dtxttanggalperiksa);
 
         final String idrekammedis = getIntent().getStringExtra("id_rekam_medis");
         final  String id_pasien = getIntent().getStringExtra("id_pasien");
@@ -125,6 +137,9 @@ public class DetailVerifikasi extends AppCompatActivity {
                 final String stanggalrekam  = dataSnapshot.child("tanggal_rekam").getValue().toString();
                 final String idhewan = dataSnapshot.child("idhewan").getValue().toString();
                 final String terapi2 = dataSnapshot.child("terapi").getValue().toString();
+                final String diagnosa = dataSnapshot.child("penyakit_di_derita").getValue().toString();
+                final String namadokterperiksa = dataSnapshot.child("namadokter_periksa").getValue().toString();
+                final String tanggalperiksa = dataSnapshot.child("tanggal_periksa").getValue().toString();
 
 
                 FirebaseDatabase.getInstance().getReference().child("Hewan").child(id_pasien).child(idhewan).addValueEventListener(new ValueEventListener() {
@@ -156,7 +171,7 @@ public class DetailVerifikasi extends AppCompatActivity {
                         twarnabulu.setText(swarnabulu);
                         tumur.setText(sumur);
                         tttl.setText(sttl);
-                        talamathewan.setText(salamathewan);
+                        /*talamathewan.setText(salamathewan);*/
 
                         if (terapi2.equals("default")) {
 
@@ -233,6 +248,34 @@ public class DetailVerifikasi extends AppCompatActivity {
                                 }
                             });
                         }else{
+                            diisisaat.setVisibility(View.VISIBLE);
+                            tpenyakit.setVisibility(View.VISIBLE);
+                            tterapi.setVisibility(View.VISIBLE);
+                            tdokterperiksa.setVisibility(View.VISIBLE);
+                            ttanggalperiksa.setVisibility(View.VISIBLE);
+                            tnamapemilik.setText(snamapemilik);
+                            tnohp.setText(snohp);
+                            tnamadokter.setText(snamadokter);
+                            tgejala.setText(sgejala);
+                            tdugaan.setText(sdugaan);
+                            talamatpemilik.setText(salamatpemilik);
+                            ttanggalrekam.setText(stanggalrekam);
+                            tnamahewan.setText(snamahewan);
+                            tjenishewan.setText(sjenishewan);
+                            tjeniskelamin.setText(sjeniskelamin);
+                            tras.setText(sras);
+                            twarnabulu.setText(swarnabulu);
+                            tumur.setText(sumur);
+                            tttl.setText(sttl);
+                            /*talamathewan.setText(salamathewan);*/
+                            txtdokterperiksa.setText(namadokterperiksa);
+                            txttanggalperiksa.setText(tanggalperiksa);
+                            txtdiagnosapenyakit.setText(diagnosa);
+                            txtterapipenyakit.setText(terapi2);
+
+
+
+
 
                         }
 

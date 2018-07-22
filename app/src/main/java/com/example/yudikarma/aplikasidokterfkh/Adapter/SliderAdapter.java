@@ -26,21 +26,21 @@ public class SliderAdapter extends PagerAdapter {
     }
     //Array image
     public int[] slideImages= {
-            R.drawable.chat,
-            R.drawable.hospital_126,
-            R.drawable.message_126
+            R.drawable.doctor6,
+            R.drawable.nurse1,
+            R.drawable.medicalhistory8
     };
 
     //Array Heading
     public String[] slideHeading = {
             "Konsultasi",
-            "Daftar Secara Online",
-            "Rekam Medis Digital"
+            "Daftar Berobat",
+            "Rekam Medis "
     };
     public String[] slideDesc = {
-            "ini adalah description singkat yang sama sekali gak ada manfaatnya. sumpah bukan gua yang buat,ini adalah description singkat yang sama sekali gak ada manfaatnya. sumpah bukan gua yang buat",
-            "ini adalah description singkat yang sama sekali gak ada manfaatnya. sumpah bukan gua yang buat,ini adalah description singkat yang sama sekali gak ada manfaatnya. sumpah bukan gua yang buat",
-            "ini adalah description singkat yang sama sekali gak ada manfaatnya. sumpah bukan gua yang buat,ini adalah description singkat yang sama sekali gak ada manfaatnya. sumpah bukan gua yang buat"
+            "Konsultasikan Penyakit yang  di derita hewan peliharaan kamu kepada dokter kami, temukan manfaatnya dengan biaya RP 0 rupiah",
+            "Daftarkan Hewan Peliharaan kamu untuk berobat pada Klinik Fakultas Kedokteran Hewan setelah berkonsultasi dengan dokter kami",
+            "Rekam Riwayat Penyakit yang pernah diderita hewan peliharaan kamu untuk mempermudah proses pemeriksaan penyakit dimasa mendatang"
     };
 
 

@@ -261,7 +261,7 @@
                             android:layout_marginStart="25dp"
                             android:padding="2dp"
 
-                            android:text="Tanggal                   :"
+                            android:text="Tanggal Rekam     :"
                             android:textColor="#8c8c8c"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -540,36 +540,7 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingBottom="2dp">
 
-                        <TextView
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="25dp"
-                            android:padding="2dp"
-
-                            android:text="           Alamat    :"
-                            android:textColor="#8c8c8c"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/dalamat"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="2dp"
-                            android:paddingStart="15dp"
-                            android:text="Banda Aceh Kec : Lungbata Gp Blangcut"
-                            android:textColor="#8c8c8c"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
 
                     <!--DIISI OLEH DOKTER-->
                     <TextView
@@ -582,6 +553,136 @@
                         android:layout_marginStart="2dp"
                         android:paddingStart="10dp"
                         android:textColor="@color/black"/>
+                    <LinearLayout
+                        android:id="@+id/txtnamadokter"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="2dp">
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="25dp"
+                            android:padding="2dp"
+
+                            android:text="Nama Dokter Periksa    :"
+                            android:textColor="#8c8c8c"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/dtxtnamadokterperiksa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="2dp"
+                            android:paddingStart="15dp"
+                            android:text="Yudi Karma"
+                            android:textColor="#8c8c8c"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/txttglperiksa"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="2dp">
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="25dp"
+                            android:padding="2dp"
+
+                            android:text="Tanggal Periksa             :"
+                            android:textColor="#8c8c8c"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/dtxttanggalperiksa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="2dp"
+                            android:paddingStart="15dp"
+                            android:text="Scabies mungkin nak"
+                            android:textColor="#8c8c8c"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/txtdiagnosa"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="2dp">
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="25dp"
+                            android:padding="2dp"
+
+                            android:text="Diagnosa Penyakit        :"
+                            android:textColor="#8c8c8c"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/dtxtdiagnosapenyakit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="2dp"
+                            android:paddingStart="15dp"
+                            android:text="Scabies mungkin nak"
+                            android:textColor="#8c8c8c"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/txtterapi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+
+                        android:paddingBottom="2dp">
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="25dp"
+                            android:padding="2dp"
+
+                            android:text="Terapi                              :"
+                            android:textColor="#8c8c8c"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/dtxtterapipenyakit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="2dp"
+                            android:paddingStart="15dp"
+                            android:text="Terapi Klinik"
+                            android:textColor="#8c8c8c"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+
 
                     <LinearLayout
                         android:id="@+id/lpenyakitdiderita"

@@ -94,7 +94,7 @@ public class ListVerivikasiBerobat extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         holder.setNama(dataSnapshot.child("name").getValue().toString());
-                        holder.setstatus(dataSnapshot.child("status").getValue().toString());
+                        holder.setstatus(dataSnapshot.child("address").getValue().toString());
                         holder.setMcCircleImageView(dataSnapshot.child("thumb_image").getValue().toString());
 
 
