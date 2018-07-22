@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yudikarma.aplikasidokterfkh.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,6 +36,8 @@ public class DetailVerifikasi extends AppCompatActivity {
     private LinearLayout lpenyakit,lterapi;
     private TextView diisisaat;
     private Toolbar toolbar;
+    private String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    private  String namadokter_periksa;
 
 
 
@@ -79,6 +82,21 @@ public class DetailVerifikasi extends AppCompatActivity {
         final String idrekammedis = getIntent().getStringExtra("id_rekam_medis");
         final  String id_pasien = getIntent().getStringExtra("id_pasien");
 
+
+        FirebaseDatabase.getInstance().getReference().child("Users").child("Dokters").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                namadokter_periksa = dataSnapshot.child("name").getValue().toString();
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,6 +125,7 @@ public class DetailVerifikasi extends AppCompatActivity {
                 final String stanggalrekam  = dataSnapshot.child("tanggal_rekam").getValue().toString();
                 final String idhewan = dataSnapshot.child("idhewan").getValue().toString();
                 final String terapi2 = dataSnapshot.child("terapi").getValue().toString();
+
 
                 FirebaseDatabase.getInstance().getReference().child("Hewan").child(id_pasien).child(idhewan).addValueEventListener(new ValueEventListener() {
                     @Override
@@ -171,6 +190,10 @@ public class DetailVerifikasi extends AppCompatActivity {
                                         riwayatpenyakit.put("penyakit_di_derita", spenyakitdiderita);
                                         riwayatpenyakit.put("terapi", sterapi);
                                         riwayatpenyakit.put("tanggal_periksa", currentDate);
+                                        String iddokter_periksa = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+                                        riwayatpenyakit.put("iddokter_periksa", iddokter_periksa);
+                                        riwayatpenyakit.put("namadokter_periksa", namadokter_periksa);
 
                                         Map pussMap = new HashMap();
                                         Map simpanriwayatpenyakit = new HashMap();

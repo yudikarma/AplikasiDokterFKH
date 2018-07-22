@@ -27,17 +27,22 @@
 
     </LinearLayout>
 
-    <TextView
+    <Button
         android:id="@+id/btnFinish"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Finish "
-        android:textColor="@color/colorTransparentWhite"
-        android:visibility="invisible"
-        android:paddingBottom="10dp"
-        android:paddingLeft="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_alignParentBottom="true"
+        android:layout_width="90dp"
+        android:layout_height="29dp"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="10dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+
+        android:visibility="invisible"
+        android:textColor="@color/hitamflat"
+        android:background="@drawable/buttoncapsul"
+
+        android:textSize="16sp"
+
+        android:text="Finish."
+        android:layout_marginStart="5dp"
+        android:textStyle="bold" />
 </RelativeLayout>

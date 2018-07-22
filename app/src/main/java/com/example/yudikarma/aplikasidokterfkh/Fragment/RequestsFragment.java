@@ -29,10 +29,13 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ServerValue;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -80,7 +83,7 @@ public class RequestsFragment extends Fragment {
         mFriendsList.setLayoutManager(new LinearLayoutManager(getContext()));
 
         //* Query query = FirebaseDatabase.getInstance().getReference().child("Users").limitToLast(50);*//*
-        Query query = FirebaseDatabase.getInstance().getReference().child("Users").child("Pasien").orderByValue().limitToLast(50);
+        Query query = FirebaseDatabase.getInstance().getReference().child("Friend_request").child(mCurrent_user_id).orderByValue().limitToLast(50);
 
 
         FirebaseRecyclerOptions<Users> options =
@@ -91,10 +94,24 @@ public class RequestsFragment extends Fragment {
 
         adapter = new FirebaseRecyclerAdapter<Users, UserviewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull UserviewHolder holder, int position, @NonNull Users model) {
-                holder.setNama(model.getName());
-                holder.setstatus(model.getStatus());
-                holder.setMcCircleImageView(model.getThumb_image());
+            protected void onBindViewHolder(@NonNull final UserviewHolder holder, int position, @NonNull Users model) {
+              final String listuid = getRef(position).getKey();
+              FirebaseDatabase.getInstance().getReference().child("Users").child("Pasien").child(listuid).addListenerForSingleValueEvent(new ValueEventListener() {
+                  @Override
+                  public void onDataChange(DataSnapshot dataSnapshot) {
+                      String displayname = dataSnapshot.child("name").getValue().toString();
+                      String status = dataSnapshot.child("status").getValue().toString();
+                      String thumimage = dataSnapshot.child("thumb_image").getValue().toString();
+                      holder.setNama(displayname);
+                      holder.setstatus(status);
+                      holder.setMcCircleImageView(thumimage);
+                  }
+
+                  @Override
+                  public void onCancelled(DatabaseError databaseError) {
+
+                  }
+              });
 
 
 

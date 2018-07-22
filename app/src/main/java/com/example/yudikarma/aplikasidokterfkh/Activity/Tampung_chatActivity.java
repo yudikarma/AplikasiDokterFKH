@@ -104,6 +104,15 @@ public class Tampung_chatActivity extends AppCompatActivity {
         mtoolbar = (Toolbar) findViewById(R.id.tampungchat_app_bar);
         setSupportActionBar(mtoolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mtoolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Tampung_chatActivity.this,ChatActivity2.class);
+
+                startActivity(intent);
+                finish();
+            }
+        });
         ActionBar actionBar = getSupportActionBar();
 
         actionBar.setDisplayShowCustomEnabled(true);

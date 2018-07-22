@@ -156,7 +156,7 @@ public class ListVerivikasiHewanBerobat extends AppCompatActivity {
 
 
 
-                        String namapenyakit = dataSnapshot.child("dugaan").getValue().toString();
+                        String namapenyakit = dataSnapshot.child("gejala").getValue().toString();
                         holder.setDugaanpenyakit(namapenyakit);
 
 
@@ -267,11 +267,6 @@ public class ListVerivikasiHewanBerobat extends AppCompatActivity {
         adapter.stopListening();
     }
 
-    public void remove(){
-        RelativeLayout relativeLayout = findViewById(R.id.hewan_single_layout);
-        relativeLayout.setVisibility(View.GONE);
-
-    }
 
     public class ListDaftarHolder extends RecyclerView.ViewHolder {
         View mView;
@@ -281,9 +276,9 @@ public class ListVerivikasiHewanBerobat extends AppCompatActivity {
             super(itemView);
             mView = itemView;
 
-            dugaanpenyakit = mView.findViewById(R.id.dugaanpenyakit);
-            namehewan = mView.findViewById(R.id.namahewan);
-            jenishewan = mView.findViewById(R.id.jenishewan);
+            dugaanpenyakit = mView.findViewById(R.id.namaHewan);
+            namehewan = mView.findViewById(R.id.jenis_hewan);
+            jenishewan = mView.findViewById(R.id.Keluhan);
         }
 
         public void setNamehewan (String namahewan1){

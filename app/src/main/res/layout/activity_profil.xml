@@ -4,8 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhitemuda"
     tools:context=".Activity.ProfilActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/profil_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/birumuda"
+        app:titleTextColor="@color/colorWhitemuda"
+        app:title="Profil User"
 
+        >
+
+    </android.support.v7.widget.Toolbar>
 
     <TextView
         android:id="@+id/profil_displayname"
@@ -13,20 +24,22 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="225dp"
-        android:text="Display_name"
-        android:textColor="@android:color/background_light"
-        android:textSize="24sp" />
+        android:layout_marginTop="229dp"
+        android:text="Danny McCallister"
+
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/profil_satus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/profil_displayname"
-        android:layout_centerHorizontal="true"
-        android:text="Display_name"
-        android:textColor="@color/colorTransparentWhite"
+        android:layout_centerInParent="true"
+        android:text="Hi saya dokter hewan"
+        android:textColor="@color/hitamflat"
         android:textSize="14sp" />
+
 
     <TextView
         android:id="@+id/profil_totalfriend"
@@ -35,43 +48,33 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="95dp"
+        android:visibility="gone"
         android:text="total_friend"
         android:textColor="@color/orangemuda"
         android:textSize="14sp" />
 
-    <ImageView
-        android:id="@+id/profil_image2"
-        android:layout_width="match_parent"
-        android:layout_height="216dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        app:srcCompat="@drawable/colapsing_bacground" />
-
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/profil_image"
-        android:layout_width="match_parent"
-        android:layout_height="213dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true" />
+        android:layout_width="130dp"
+
+        android:layout_height="130dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="88dp"
+        android:src="@drawable/default_avatar"
+        app:civ_border_color="@color/birumuda"
+        app:civ_border_width="2dp" />
 
     <Button
         android:id="@+id/profil_btn_sendrequest"
         android:layout_width="180dp"
-        android:layout_height="30dp"
+        android:layout_height="34dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="56dp"
-        android:background="@color/fui_bgPhone"
+        android:layout_marginBottom="27dp"
+
+        android:background="@drawable/buttoncapsul"
         android:text="Send Friend Request" />
 
-    <Button
-        android:id="@+id/profil_btn_decline"
-        android:layout_width="236dp"
-        android:layout_height="35dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="11dp"
-        android:background="@color/fui_bgPhone"
-        android:text="Decline Friend Request" />
 
 </RelativeLayout>

@@ -69,9 +69,12 @@
             android:name=".Fragment.RequestsFragment"
             android:parentActivityName=".Activity.MainActivity" />
         <activity android:name=".Activity.ListVerivikasiBerobat" />
-        <activity android:name=".Activity.DetailVerifikasi"
-            android:parentActivityName=".Activity.ListVerivikasiHewanBerobat"/>
-        <activity android:name=".Activity.ListVerivikasiHewanBerobat"></activity>
+        <activity
+            android:name=".Activity.DetailVerifikasi"
+            android:parentActivityName=".Activity.ListVerivikasiHewanBerobat" />
+        <activity android:name=".Activity.ListVerivikasiHewanBerobat" />
+        <activity android:name=".Activity.ChangeStatus" />
+        <activity android:name=".Activity.DetailUser"></activity>
     </application>
 
 </manifest>

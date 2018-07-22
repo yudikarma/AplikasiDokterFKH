@@ -47,13 +47,21 @@ public class ChatActivity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat2);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.main_app_bar2);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.chattoolbar);
         //setSupportActionBar(toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Chat Pasien");
         actionBar.setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ChatActivity2.this,MainActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(i);
+            }
+        });
 
         /*actionBar.setDisplayShowCustomEnabled(true);
         setSupportActionBar(toolbar);
@@ -112,11 +120,6 @@ public class ChatActivity2 extends AppCompatActivity {
             Intent i = new Intent(ChatActivity2.this, SettingActivity.class);
             /*i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);*/
             startActivity(i);
-        } else if (item.getItemId() == R.id.All_user) {
-            Intent i = new Intent(ChatActivity2.this, UsersActivity.class);
-            // i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(i);
-
         }
         return true;
     }

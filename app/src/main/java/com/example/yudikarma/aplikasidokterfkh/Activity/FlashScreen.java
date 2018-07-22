@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -20,7 +21,7 @@ public class FlashScreen extends AppCompatActivity {
     private TextView[] mDotslayout;
 
     private SliderAdapter sliderAdapter;
-    private TextView txtFinish;
+    private Button txtFinish;
     private int mCurrentPage;
 
     //fIREBASE
@@ -39,7 +40,7 @@ public class FlashScreen extends AppCompatActivity {
         addDotsIndikator(0);
 
         slideview.addOnPageChangeListener(viewListener);
-        txtFinish = (TextView) findViewById(R.id.btnFinish);
+        txtFinish = (Button) findViewById(R.id.btnFinish);
         txtFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

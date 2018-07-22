@@ -1,10 +1,12 @@
 package com.example.yudikarma.aplikasidokterfkh.Activity;
 
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.content.Intent;
 
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,7 +34,10 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar mtToolbar;
     private LinearLayout pindahToChat;
     private  LinearLayout pindahToVerifikasiBerobat;
+    private CardView pindahToListUser;
     private DatabaseReference mUserRef;
+    private CollapsingToolbarLayout collapsingToolbarLayout;
+    private String background = "default";
 
 
     @Override
@@ -74,6 +79,35 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        pindahToListUser = findViewById(R.id.pindahToUser);
+        pindahToListUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,UsersActivity.class);
+                startActivity(intent);
+            }
+        });
+        collapsingToolbarLayout = findViewById(R.id.collapsing);
+        collapsingToolbarLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (background.equals("default")){
+                    collapsingToolbarLayout.setBackgroundResource(R.drawable.matterial_background);
+                    background = "matterial";
+                }
+                else if (background.equals("matterial")){
+                    collapsingToolbarLayout.setBackgroundResource(R.drawable.colapsing_bacground);
+                    background = "default";
+
+                }else{
+                    collapsingToolbarLayout.setBackgroundResource(R.drawable.colapsing_bacground);
+
+                }
+
+            }
+        });
+
 
 
     }
@@ -142,11 +176,6 @@ public class MainActivity extends AppCompatActivity {
             Intent i = new Intent(MainActivity.this, SettingActivity.class);
             /*i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);*/
             startActivity(i);
-        } else if (item.getItemId() == R.id.All_user) {
-            Intent i = new Intent(MainActivity.this, UsersActivity.class);
-            // i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(i);
-
         }
         return true;
     }

@@ -3,8 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:title="Acount Setting"
         android:id="@+id/acount_setting_main" />
-    <item android:title="All User"
-        android:id="@+id/All_user" />
+
     <item android:title="@string/logout"
         android:id="@+id/logout_menu_main"></item>
 

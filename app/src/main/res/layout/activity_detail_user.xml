@@ -26,7 +26,7 @@
             android:background="@drawable/circle_border">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/circleImageView"
+                android:id="@+id/circleImageViewdetail"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_margin="9dp"
@@ -46,10 +46,11 @@
             android:background="@color/colorWhitemuda"
             android:clickable="true"
             android:padding="3dp"
-            android:src="@drawable/ic_camera_alt_black_24dp" />
+            android:src="@drawable/ic_camera_alt_black_24dp"
+            android:visibility="invisible"/>
 
         <TextView
-            android:id="@+id/display_name_setting"
+            android:id="@+id/display_name_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/imgUser"
@@ -63,32 +64,16 @@
 
 
         <TextView
-            android:id="@+id/tstatus"
+            android:id="@+id/status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/display_name_setting"
+            android:layout_below="@+id/display_name_detail"
             android:layout_centerHorizontal="true"
             android:fontFamily="sans-serif"
-
-            android:text="Aceh. IndonesiaAceh. IndonesiaAceh. IndonesiaAceh. IndonesiaAceh. IndonesiaAceh. IndonesiaAceh. "
-            android:layout_marginEnd="40dp"
-            android:layout_marginStart="5dp"
-
+            android:text="Aceh. Indonesia"
 
             android:textColor="@color/address"
             android:textSize="14sp" />
-
-        <ImageView
-            android:id="@+id/changestatus_settinng"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-
-            android:layout_alignBottom="@+id/tstatus"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="5dp"
-            android:src="@drawable/ic_border_color_black_24dp" />
 
         <ImageView
             android:layout_width="40dp"
@@ -127,7 +112,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/jumlahteman"
+                    android:id="@+id/jumlahtemandetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
@@ -165,7 +150,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/jumlahrequest"
+                    android:id="@+id/jumlahrequestriend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
@@ -177,7 +162,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
-                    android:text="Request Friends"
+                    android:text="Rekam Medis"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textSize="13sp" />
@@ -216,7 +201,7 @@
                     android:textSize="13sp" />
 
                 <TextView
-                    android:id="@+id/email_setting"
+                    android:id="@+id/email_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
@@ -246,7 +231,7 @@
                     android:textSize="13sp" />
 
                 <TextView
-                    android:id="@+id/nohp_setting"
+                    android:id="@+id/nohp_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
@@ -277,7 +262,7 @@
                     android:textSize="13sp" />
 
                 <TextView
-                    android:id="@+id/address_settting"
+                    android:id="@+id/address_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"

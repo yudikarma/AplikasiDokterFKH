@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.yudikarma.aplikasidokterfkh.Activity.DetailUser;
 import com.example.yudikarma.aplikasidokterfkh.Activity.ProfilActivity;
 import com.example.yudikarma.aplikasidokterfkh.Activity.Tampung_chatActivity;
 import com.example.yudikarma.aplikasidokterfkh.Model.Friends;
@@ -129,7 +130,7 @@ public class FriendsFragment extends Fragment {
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         //click event for each item
                                         if (i == 0){
-                                            Intent profilIntent = new Intent(getContext(),ProfilActivity.class);
+                                            Intent profilIntent = new Intent(getContext(),DetailUser.class);
                                             // i.putExtra("user_id",list_user_id);
                                             profilIntent.putExtra("user_id",list_user_id );
                                             startActivity(profilIntent);

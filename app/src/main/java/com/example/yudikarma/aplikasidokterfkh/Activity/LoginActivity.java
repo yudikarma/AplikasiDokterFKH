@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
-    private TextView regiSt;
+    private LinearLayout regiSt;
     private Button mEmailSignInButton;
     private ProgressDialog mpProgressDialog;
 
@@ -70,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
         mPasswordView = (EditText) findViewById(R.id.password);
 
 
-        regiSt = (TextView) findViewById(R.id.tvRegister);
+        regiSt =  findViewById(R.id.tvRegister);
         mpProgressDialog = new ProgressDialog(this);
 
 

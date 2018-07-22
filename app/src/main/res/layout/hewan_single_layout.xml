@@ -4,44 +4,46 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/hewan_single_layout">
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profil_single_layout"
         android:layout_width="64dp"
         android:layout_height="64dp"
+
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/cat" />
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="7dp"
+        android:src="@drawable/dog"
+        app:civ_border_color="@color/birumuda"
+        app:civ_border_width="2dp" />
 
     <TextView
-        android:id="@+id/dugaanpenyakit"
+        android:id="@+id/namaHewan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="71dp"
-        android:text="Dugaan Penyakit"
-        android:textSize="20sp" />
+
+        android:layout_alignTop="@+id/profil_single_layout"
+        android:layout_marginStart="95dp"
+        android:text="Nama Hewan"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/namahewan"
+        android:id="@+id/jenis_hewan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/dugaanpenyakit"
-        android:layout_marginStart="78dp"
-        android:text="Nama Hewan" />
-
-    <TextView
-        android:id="@+id/jenishewan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_alignStart="@+id/namahewan"
-        android:layout_below="@+id/namahewan"
+        android:layout_alignStart="@+id/namaHewan"
+        android:layout_below="@+id/namaHewan"
         android:text="Jenis Hewan" />
-    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/Keluhan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/namaHewan"
+        android:layout_below="@+id/jenis_hewan"
+        android:text="Keluhan Penyakit" />
+
 </RelativeLayout>

@@ -1,5 +1,7 @@
 package com.example.yudikarma.aplikasidokterfkh.Fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -61,6 +63,7 @@ public class ChatFragment extends Fragment{
     private View mMainView;
 
     private FirebaseRecyclerAdapter<Conv,ConvViewHolder> adapter;
+    private   String  http = "Test";
 
 
 
@@ -110,7 +113,19 @@ public class ChatFragment extends Fragment{
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                         String data = dataSnapshot.child("message").getValue().toString();
-                        holder.setMessage(data, model.isSeen());
+                        /*holder.setMessage(data, model.isSeen());*/
+
+
+                       if (!data.isEmpty() && data != null && data.length() >= 10){
+                           String http = data.substring(0, 4);
+                           if (http.equalsIgnoreCase("http")){
+                               holder.setMessage("*Image", model.isSeen());
+                           }else {
+                               holder.setMessage(data, model.isSeen());
+                           }
+                       }else {
+                           holder.setMessage(data, model.isSeen());
+                       }
                     }
 
                     @Override
@@ -157,6 +172,30 @@ public class ChatFragment extends Fragment{
                                 chatIntent.putExtra("user_id", list_user_id);
                                 chatIntent.putExtra("user_name", userName);
                                 startActivity(chatIntent);
+                            }
+                        });
+
+                        holder.mView.setOnLongClickListener(new View.OnLongClickListener() {
+                            @Override
+                            public boolean onLongClick(View view) {
+                                CharSequence options[] = new CharSequence[]{"Delete Message"};
+                                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+                                builder.setTitle("Choose Options");
+
+                                builder.setItems(options, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        //click event for each item
+                                        if (i == 0){
+                                            mMessageDatabase.child(list_user_id).setValue(null);
+                                            mConvDatabase.child(mCurrent_user_id).child(list_user_id).setValue(null);
+                                        }
+
+                                    }
+                                });
+                                builder.show();
+                                return true;
                             }
                         });
                     }

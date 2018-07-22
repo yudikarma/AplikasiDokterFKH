@@ -1,5 +1,6 @@
 package com.example.yudikarma.aplikasidokterfkh.Activity;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -12,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,7 +55,9 @@ public class SettingActivity extends AppCompatActivity {
     private CircleImageView mCircleImageView;
     private TextView mDisplayname;
     private TextView mstatus;
-    private Button btn_changeimage_setting;
+    private TextView jumlahteman,jumlahrekammedis,email_setting,nohp_setting,address_setting;
+    private FloatingActionButton btn_changeimage_setting;
+    private ImageView btn_changestatus_settinng;
     private ProgressDialog mProgressDialog;
 
     private Compressor compressedImageBitmap;
@@ -66,15 +70,21 @@ public class SettingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
+
         mCircleImageView = (CircleImageView) findViewById(R.id.circleImageView);
         mDisplayname = (TextView) findViewById(R.id.display_name_setting);
-        mstatus = (TextView) findViewById(R.id.status_setting);
+        mstatus = findViewById(R.id.tstatus);
+        jumlahteman = findViewById(R.id.jumlahteman);
+        jumlahrekammedis = findViewById(R.id.jumlahrequest);
+        email_setting = findViewById(R.id.email_setting);
+        nohp_setting = findViewById(R.id.nohp_setting);
+        address_setting = findViewById(R.id.address_settting);
         mProgressDialog = new ProgressDialog(this);
-        btn_changeimage_setting = (Button) findViewById(R.id.change_image_setting);
+        btn_changeimage_setting = (FloatingActionButton) findViewById(R.id.change_image_setting);
         mStorageReference = FirebaseStorage.getInstance().getReference();
 
         mCurrentuser = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = mCurrentuser.getUid();
+        final String uid = mCurrentuser.getUid();
         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child("Dokters").child(uid);
         mUsercampurDatabase = FirebaseDatabase.getInstance().getReference().child("UserCampur").child(uid);
         mDatabaseReference.keepSynced(true);
@@ -82,14 +92,30 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String display_name = dataSnapshot.child("name").getValue().toString();
-                String status = dataSnapshot.child("status").getValue().toString();
+               final String status = dataSnapshot.child("status").getValue().toString();
                 final String image = dataSnapshot.child("image").getValue().toString();
                 String thumb_image = dataSnapshot.child("thumb_image").getValue().toString();
                 String address = dataSnapshot.child("address").getValue().toString();
                 String no_hp = dataSnapshot.child("no_hp").getValue().toString();
+                String email = dataSnapshot.child("email").getValue().toString();
+                email_setting.setText(email);
+                nohp_setting.setText(no_hp);
+                address_setting.setText(address);
 
                 mDisplayname.setText(display_name);
                 mstatus.setText(status);
+                btn_changestatus_settinng = findViewById(R.id.changestatus_settinng);
+                btn_changestatus_settinng.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(SettingActivity.this,ChangeStatus.class);
+                        intent.putExtra("iduser", uid);
+                        intent.putExtra("status", status);
+                        /*intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);*/
+                        startActivity(intent);
+
+                    }
+                });
                 if (!image.equals("default")) {
                     Picasso.with(SettingActivity.this).load(image).networkPolicy(NetworkPolicy.OFFLINE)
                             .placeholder(R.drawable.default_avatar).into(mCircleImageView, new Callback() {
@@ -109,6 +135,32 @@ public class SettingActivity extends AppCompatActivity {
                     Picasso.with(SettingActivity.this).load(R.drawable.default_avatar).into(mCircleImageView);
 
                 }
+                FirebaseDatabase.getInstance().getReference().child("Friends").child(uid).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        Long jumlah = dataSnapshot.getChildrenCount();
+                        jumlahteman.setText(""+jumlah);
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+                FirebaseDatabase.getInstance().getReference().child("Friend_request").child(uid).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        Long jumlah = dataSnapshot.getChildrenCount();
+                        jumlahrekammedis.setText(""+jumlah);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
 
 
             }
@@ -130,6 +182,8 @@ public class SettingActivity extends AppCompatActivity {
                 startActivityForResult(Intent.createChooser(galery_intent, "Select Image"), GALLERY_PICK);
             }
         });
+
+
     }
 
     @Override

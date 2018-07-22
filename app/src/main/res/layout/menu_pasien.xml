@@ -21,7 +21,7 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             app:contentScrim="@color/colorPrimary"
             android:background="@drawable/colapsing_bacground"
-            app:title="Dokter FKH"
+            app:title="Veterinary"
 
 
             >
@@ -86,14 +86,14 @@
                         <ImageView
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:src="@drawable/message_126"
+                            android:src="@drawable/doctor7"
                             android:layout_marginTop="2dp"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="Konsultasi"
+                            android:text="konsultasi"
                             android:textStyle="bold" />
 
                         <View
@@ -107,7 +107,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:padding="5dp"
-                            android:text="Konsultasikan penyakit yang diderita hewan peliharaan anda."
+                            android:text="Memberikan Konsultasi Kepada Pasien Dengan Feature Chat."
                             android:textColor="@color/birutua" />
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
@@ -130,7 +130,7 @@
                             android:layout_height="64dp"
 
                             android:background="@drawable/circlebackgroundgreen"
-                            android:src="@drawable/hospital_126" />
+                            android:src="@drawable/nurse1" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -150,7 +150,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:padding="5dp"
-                            android:text="Silahkan Klik untuk daftar berobat pada klinik FKH."
+                            android:text="verifikasi Pasien Yang Melakukan Pendaftaran Berobat."
                             android:textColor="@color/birutua" />
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
@@ -165,21 +165,24 @@
                 android:clipToPadding="false">
 
                 <android.support.v7.widget.CardView
+                    android:id="@+id/pindahToUser"
                     android:layout_width="160dp"
                     android:layout_height="190dp"
                     android:layout_margin="5dp"
                     android:background="@color/colorWhitemuda">
 
                     <LinearLayout
+
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:gravity="center">
+                        android:gravity="center"
+                       >
 
                         <ImageView
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:src="@drawable/message_126"/>
+                            android:src="@drawable/medicalhistory8"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -196,7 +199,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Informasi tentang Cara penggunaan Aplikasi dan Informasi Developer."
+                            android:text="Informasi Tentang Data Pasien Dan Rekam Medis."
                             android:padding="5dp"
                             android:textColor="@color/birutua"/>
                     </LinearLayout>
@@ -217,7 +220,7 @@
                             android:layout_height="64dp"
 
                             android:background="@drawable/circlebackgroundgreen"
-                            android:src="@drawable/hospital_126"
+                            android:src="@drawable/surgeon11"
                             android:id="@+id/keluar"
                             />
 
@@ -236,7 +239,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Keluar dari aplikasi dan user login."
+                            android:text="Informasi tentang Aplikasi dan Pengemban."
                             android:padding="5dp"
                             android:textColor="@color/birutua"/>
                     </LinearLayout>

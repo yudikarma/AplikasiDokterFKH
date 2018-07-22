@@ -21,7 +21,7 @@
             android:layout_height="520dp"
             android:layout_above="@+id/linearLayout"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/tampungchat_app_bar"></android.support.v7.widget.RecyclerView>
+            android:paddingTop="55dp"></android.support.v7.widget.RecyclerView>
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
@@ -72,5 +72,5 @@
 
     <include
         android:id="@+id/tampungchat_app_bar"
-        layout="@layout/menu_app_bar"></include>
+        layout="@layout/app_bar_layout"></include>
 </RelativeLayout>

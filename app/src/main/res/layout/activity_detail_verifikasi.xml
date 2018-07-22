@@ -200,7 +200,7 @@
                             android:layout_marginStart="25dp"
                             android:padding="2dp"
 
-                            android:text="Gejala                      :"
+                            android:text="Keluhan                  :"
                             android:textColor="#8c8c8c"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -218,6 +218,7 @@
 
                     </LinearLayout>
                     <LinearLayout
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -601,7 +602,7 @@
                                 android:id="@+id/penyakit_di_derita"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="Penyakit Di Derita" />
+                                android:hint="Diagnosa Penyakit" />
                         </android.support.design.widget.TextInputLayout>
 
                     </LinearLayout>
@@ -623,7 +624,7 @@
                                 android:id="@+id/terapi"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="Terapi Yang Di Ambil" />
+                                android:hint="Terapi " />
                         </android.support.design.widget.TextInputLayout>
 
                     </LinearLayout>
