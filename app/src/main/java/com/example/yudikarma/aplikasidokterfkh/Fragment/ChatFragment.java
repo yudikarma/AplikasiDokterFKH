@@ -64,6 +64,7 @@ public class ChatFragment extends Fragment{
 
     private FirebaseRecyclerAdapter<Conv,ConvViewHolder> adapter;
     private   String  http = "Test";
+    private TextView notifnull;
 
 
 
@@ -78,6 +79,8 @@ public class ChatFragment extends Fragment{
      View mMainView = inflater.inflate(R.layout.activity_chat_fragment, container, false);
         mConvList = (RecyclerView) mMainView.findViewById(R.id.conv_list);
         mAuth = FirebaseAuth.getInstance();
+
+        notifnull = mMainView.findViewById(R.id.notifnullchats);
 
         mCurrent_user_id = mAuth.getCurrentUser().getUid();
 
@@ -113,13 +116,29 @@ public class ChatFragment extends Fragment{
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                         String data = dataSnapshot.child("message").getValue().toString();
-                        /*holder.setMessage(data, model.isSeen());*/
+                        //mendapatkan pengirim pesan
+                        String fromUser = dataSnapshot.child("from").getValue().toString();
 
 
                        if (!data.isEmpty() && data != null && data.length() >= 10){
                            String http = data.substring(0, 4);
                            if (http.equalsIgnoreCase("http")){
-                               holder.setMessage("*Image", model.isSeen());
+                               if (fromUser.equalsIgnoreCase(mCurrent_user_id)){
+                                   holder.setMessage("Anda Mengirim Foto", model.isSeen());
+                               }else {
+                                   mUsersDatabase.child(fromUser).addValueEventListener(new ValueEventListener() {
+                                       @Override
+                                       public void onDataChange(DataSnapshot dataSnapshot) {
+                                           String getdisplayname = dataSnapshot.child("name").getValue().toString();
+                                           holder.setMessage(" "+getdisplayname+" "+"Mengirim Foto", model.isSeen());
+                                       }
+
+                                       @Override
+                                       public void onCancelled(DatabaseError databaseError) {
+
+                                       }
+                                   });
+                               }
                            }else {
                                holder.setMessage(data, model.isSeen());
                            }
@@ -220,7 +239,23 @@ public class ChatFragment extends Fragment{
             }
         };
 
-        mConvList.setAdapter(adapter);
+        FirebaseDatabase.getInstance().getReference().child("Chat").child(mCurrent_user_id).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                long jumlah = dataSnapshot.getChildrenCount();
+                if (jumlah>0){
+                    mConvList.setAdapter(adapter);
+                }else {
+                    notifnull.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
 
 
         return mMainView;

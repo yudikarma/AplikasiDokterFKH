@@ -44,6 +44,7 @@ public class ListVerivikasiBerobat extends AppCompatActivity {
     private ProgressDialog mProgressDialog;
     private ImageView statusOnline;
     private FirebaseAuth mAuth;
+    private TextView notifnull;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,7 +135,24 @@ public class ListVerivikasiBerobat extends AppCompatActivity {
                 return new UserviewHolder(mView);
             }
         };
-        mListView.setAdapter(adapter);
+
+        FirebaseDatabase.getInstance().getReference().child("RekamMedis").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                long jumlah = dataSnapshot.getChildrenCount();
+                if (jumlah>0){
+                    mListView.setAdapter(adapter);
+                }else {
+                    notifnull.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
 

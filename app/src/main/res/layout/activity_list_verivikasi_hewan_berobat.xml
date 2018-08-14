@@ -9,6 +9,15 @@
     <include
         android:id="@+id/user_appbar"
         layout="@layout/app_bar_layout" />
+    <TextView
+        android:id="@+id/notifnullhewanberobat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone"
+        android:text="Data Belum tersedia"
+        />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/listhewan"

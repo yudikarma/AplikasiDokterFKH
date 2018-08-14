@@ -100,6 +100,31 @@
 
                     android:hint= "@string/password"
                     android:textColorHint="@color/colorPrimary"
+                    android:inputType="textPassword"
+                    android:textColorLink="@color/colorPrimaryDark" />
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/reg_password2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginBottom="3dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginStart="8dp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="0.0">
+
+                <android.support.design.widget.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="3dp"
+                    android:layout_marginStart="8dp"
+                    android:hint= "Retype Password"
+                    android:textColorHint="@color/colorPrimary"
+                    android:inputType="textPassword"
                     android:textColorLink="@color/colorPrimaryDark" />
             </android.support.design.widget.TextInputLayout>
 
@@ -123,6 +148,7 @@
                     android:layout_marginEnd="3dp"
                     android:layout_marginLeft="3dp"
                     android:layout_marginRight="3dp"
+                    android:inputType="number"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="3dp"
                     android:hint="No Hp" />

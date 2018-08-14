@@ -74,7 +74,10 @@
             android:parentActivityName=".Activity.ListVerivikasiHewanBerobat" />
         <activity android:name=".Activity.ListVerivikasiHewanBerobat" />
         <activity android:name=".Activity.ChangeStatus" />
-        <activity android:name=".Activity.DetailUser"></activity>
+        <activity android:name=".Activity.DetailUser" />
+        <activity android:name=".Activity.RiwayatPenyakit" />
+        <activity android:name=".Activity.ListHewanRiwayatPenyakit" />
+        <activity android:name=".Activity.Panduan"></activity>
     </application>
 
 </manifest>

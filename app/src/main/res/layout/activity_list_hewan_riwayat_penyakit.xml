@@ -7,10 +7,10 @@
     tools:context=".Activity.ListDaftarBerobat">
 
     <include
-        android:id="@+id/backmain"
+        android:id="@+id/toolbarriwayat"
         layout="@layout/app_bar_layout" />
     <TextView
-        android:id="@+id/notifnullverifikasiberobat"
+        android:id="@+id/notifnullriwayat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -18,8 +18,9 @@
         android:visibility="gone"
         android:text="DATA TIDAK TERSEDIA"
         />
+
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/listVerifikasi"
+        android:id="@+id/listhewanriwayat"
         android:layout_width="match_parent"
         android:layout_height="513dp"
         android:layout_alignParentTop="true"

@@ -107,9 +107,9 @@ public class Tampung_chatActivity extends AppCompatActivity {
         mtoolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Tampung_chatActivity.this,ChatActivity2.class);
+                /*Intent intent = new Intent(Tampung_chatActivity.this,ChatActivity2.class);
 
-                startActivity(intent);
+                startActivity(intent);*/
                 finish();
             }
         });

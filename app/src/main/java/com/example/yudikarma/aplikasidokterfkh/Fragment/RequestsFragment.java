@@ -55,6 +55,7 @@ public class RequestsFragment extends Fragment {
     private String mCurrent_user_id;
     private ProgressDialog mProgressDialog;
     private DatabaseReference mUserRef;
+    private TextView notifnull;
 
     //private View mMainView;
 
@@ -71,6 +72,7 @@ public class RequestsFragment extends Fragment {
         mFriendsList = rootView.findViewById(R.id.list_request);
         mAuth = FirebaseAuth.getInstance();
         statusOnline = rootView.findViewById(R.id.user_single_online_icon);
+        notifnull = rootView.findViewById(R.id.notifnullrequest);
 
         mCurrent_user_id = mAuth.getCurrentUser().getUid();
         mUserRef = FirebaseDatabase.getInstance().getReference().child("Users").child("Dokters").child(mAuth.getCurrentUser().getUid());
@@ -137,7 +139,26 @@ public class RequestsFragment extends Fragment {
                 return new UserviewHolder(mView);
             }
         };
-        mFriendsList.setAdapter(adapter);
+
+        FirebaseDatabase.getInstance().getReference().child("Friend_request").child(mCurrent_user_id).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                long jumlah = dataSnapshot.getChildrenCount();
+                if (jumlah>0){
+                    mFriendsList.setAdapter(adapter);
+                }else {
+                    notifnull.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
 
         return rootView;
 

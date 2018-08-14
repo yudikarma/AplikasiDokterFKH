@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout pindahToChat;
     private  LinearLayout pindahToVerifikasiBerobat;
     private CardView pindahToListUser;
+    private LinearLayout pindahToPanduan;
     private DatabaseReference mUserRef;
     private CollapsingToolbarLayout collapsingToolbarLayout;
     private String background = "default";
@@ -104,6 +105,17 @@ public class MainActivity extends AppCompatActivity {
                     collapsingToolbarLayout.setBackgroundResource(R.drawable.colapsing_bacground);
 
                 }
+
+            }
+        });
+
+        pindahToPanduan = findViewById(R.id.pindahToPanduan);
+        pindahToPanduan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, Panduan.class);
+                //i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(i);
 
             }
         });

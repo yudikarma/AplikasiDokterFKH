@@ -15,7 +15,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"></include>
+    <TextView
+        android:id="@+id/notifnullchats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
 
+        android:text="anda Belum memiliki list Percakapan"
+        />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/conv_list"
         android:layout_width="404dp"

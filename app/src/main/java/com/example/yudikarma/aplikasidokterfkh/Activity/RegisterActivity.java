@@ -32,6 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
     private TextInputLayout displayname;
     private TextInputLayout email;
     private TextInputLayout password;
+    private TextInputLayout password2;
     private TextInputLayout no_hp;
     private TextInputLayout alamat;
     private RadioGroup mRadioGroup;
@@ -64,6 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
         displayname = (TextInputLayout) findViewById(R.id.reg_display_name);
         email = (TextInputLayout) findViewById(R.id.reg_email);
         password = (TextInputLayout) findViewById(R.id.reg_password);
+        password2 = findViewById(R.id.reg_password2);
         register = (Button) findViewById(R.id.regist_btn);
         no_hp = (TextInputLayout) findViewById(R.id.reg_no_hp);
         alamat = (TextInputLayout) findViewById(R.id.reg_alamat);
@@ -81,6 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String edisplayname = displayname.getEditText().getText().toString();
                 String eemail = email.getEditText().getText().toString();
                 String epassword = password.getEditText().getText().toString();
+                String epassword2 = password2.getEditText().getText().toString();
                 String eno_hp = no_hp.getEditText().getText().toString();
                 String ealamat = alamat.getEditText().getText().toString();
                 String jenislk = "";
@@ -94,16 +97,22 @@ public class RegisterActivity extends AppCompatActivity {
                 }
 
 
-                if(!TextUtils.isEmpty(edisplayname)||TextUtils.isEmpty(eemail)||TextUtils.isEmpty(epassword)
-                        || TextUtils.isEmpty(eno_hp)|| TextUtils.isEmpty(ealamat)||TextUtils.isEmpty(jenislk)) {
-                    mpProgressDialog.setTitle("Creating new acount..");
-                    mpProgressDialog.setMessage("Please wait.. while we create your acount..");
-                    mpProgressDialog.setCanceledOnTouchOutside(false);
-                    mpProgressDialog.show();
-                    register_user(edisplayname, eemail, epassword,eno_hp,ealamat,jenislk);
+                if(!TextUtils.isEmpty(edisplayname)&& !TextUtils.isEmpty(eemail)&& !TextUtils.isEmpty(epassword)
+                        && !TextUtils.isEmpty(eno_hp)&& !TextUtils.isEmpty(ealamat)&& !TextUtils.isEmpty(jenislk)) {
+                   if (epassword.equalsIgnoreCase(epassword2)){
+                       mpProgressDialog.setTitle("Creating new acount..");
+                       mpProgressDialog.setMessage("Please wait.. while we create your acount..");
+                       mpProgressDialog.setCanceledOnTouchOutside(false);
+                       mpProgressDialog.show();
+                       register_user(edisplayname, eemail, epassword,eno_hp,ealamat,jenislk);
+                   }else {
+                       mpProgressDialog.hide();
+                       Toast.makeText(RegisterActivity.this,"Retype Password & password harus sama.",Toast.LENGTH_SHORT).show();
+                   }
                 }else{
                     mpProgressDialog.hide();
-                    Toast.makeText(RegisterActivity.this,"Field Tidak Boleh Kosong",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this,"Maaf, semua form harus diisi.",Toast.LENGTH_SHORT).show();
+
                 }
 
             }

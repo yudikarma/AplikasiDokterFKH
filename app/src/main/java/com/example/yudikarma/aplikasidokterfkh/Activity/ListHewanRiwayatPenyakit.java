@@ -1,11 +1,8 @@
 package com.example.yudikarma.aplikasidokterfkh.Activity;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,8 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.yudikarma.aplikasidokterfkh.Model.Hewan;
 import com.example.yudikarma.aplikasidokterfkh.Model.Users;
@@ -31,8 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-public class ListVerivikasiHewanBerobat extends AppCompatActivity {
-
+public class ListHewanRiwayatPenyakit extends AppCompatActivity {
 
     private Toolbar mToolbar;
     private RecyclerView mListView;
@@ -41,8 +37,8 @@ public class ListVerivikasiHewanBerobat extends AppCompatActivity {
     private DatabaseReference userDatabase;
     //private FirebaseListAdapter adapter;
     private FirebaseDatabase mFirebaseDatabase;
-    private FirebaseRecyclerAdapter<Hewan, ListDaftarHolder> adapter;
-    private FirebaseRecyclerAdapter<Hewan, ListDaftarHolder> adapter1;
+    private FirebaseRecyclerAdapter<Hewan, ListHewanRiwayatPenyakit.ListDaftarHolder> adapter;
+    private FirebaseRecyclerAdapter<Hewan, ListVerivikasiHewanBerobat.ListDaftarHolder> adapter1;
 
     private ProgressDialog mProgressDialog;
 
@@ -52,38 +48,36 @@ public class ListVerivikasiHewanBerobat extends AppCompatActivity {
     private String idhewan;
     private TextView notifnull;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_verivikasi_hewan_berobat);
+        setContentView(R.layout.activity_list_hewan_riwayat_penyakit);
 
         muser = FirebaseAuth.getInstance().getUid();
 
-        mToolbar = (Toolbar) findViewById(R.id.user_appbar);
+        mToolbar = (Toolbar) findViewById(R.id.toolbarriwayat);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("List Hewan Peliharaan");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              /*  Intent intent = new Intent(ListVerivikasiHewanBerobat.this,ListVerivikasiBerobat.class);
+                Intent intent = new Intent(ListHewanRiwayatPenyakit.this,ListVerivikasiBerobat.class);
 
-                startActivity(intent);*/
+                startActivity(intent);
                 finish();
             }
         });
+        notifnull = findViewById(R.id.notifnullriwayat);
 
-        notifnull = findViewById(R.id.notifnullhewanberobat);
 
-        mListView = (RecyclerView) findViewById(R.id.listhewan);
+        mListView = (RecyclerView) findViewById(R.id.listhewanriwayat);
         mListView.setHasFixedSize(true);
         mListView.setLayoutManager(new LinearLayoutManager(this));
         final String id_pasien = getIntent().getStringExtra("user_id");
 
         //QUERY
-        Query query = FirebaseDatabase.getInstance().getReference().child("RekamMedis").child(id_pasien).limitToLast(50);
+        Query query = FirebaseDatabase.getInstance().getReference().child("RiwayatPenyakit").child(id_pasien).limitToLast(50);
 
 
 
@@ -96,58 +90,12 @@ public class ListVerivikasiHewanBerobat extends AppCompatActivity {
                         .setLifecycleOwner(this)
                         .build();
 
-
-
-        /*adapter1 = new FirebaseRecyclerAdapter<Hewan, ListDaftarHolder>(options1) {
+        adapter = new FirebaseRecyclerAdapter<Hewan, ListHewanRiwayatPenyakit.ListDaftarHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull ListDaftarHolder holder, int position, @NonNull Hewan model) {
-                final String idhewan = getRef(position).getKey();
-                FirebaseDatabase.getInstance().getReference().child("Hewan")
+            protected void onBindViewHolder(@NonNull final ListHewanRiwayatPenyakit.ListDaftarHolder holder, int position, @NonNull Hewan model) {
+                final String idriwayatpenyakit = getRef(position).getKey();
 
-
-            }
-
-            @NonNull
-            @Override
-            public ListDaftarHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                return null;
-            }
-        };*/
-
-        adapter = new FirebaseRecyclerAdapter<Hewan, ListDaftarHolder>(options) {
-            @Override
-            protected void onBindViewHolder(@NonNull final ListDaftarHolder holder, int position, @NonNull Hewan model) {
-                final String idrekammedis = getRef(position).getKey();
-               /* FirebaseDatabase.getInstance().getReference().child("Hewan").child(id_pasien).addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                       *//*idhewan = dataSnapshot.getKey().toString();
-                       Log.i("idhwannnnnnn", idhewan);*//*
-
-                       for (DataSnapshot child : dataSnapshot.getChildren()){
-                        String data1 = child.getKey();
-                           String data2 = child.getChildren().toString();
-                           String data3 = child.getValue().toString();
-
-                           holder.setNamehewan(data1);
-
-                           Log.i("data2", ""+data2);
-                           Log.i("data3", ""+data3);
-
-
-                       }
-
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });*/
-              // final String idhewan = FirebaseDatabase.getInstance().getReference().child("Hewan").child(id_pasien).push().getKey();
-
-                FirebaseDatabase.getInstance().getReference().child("RekamMedis").child(id_pasien).child(idrekammedis).addValueEventListener(new ValueEventListener() {
+                FirebaseDatabase.getInstance().getReference().child("RiwayatPenyakit").child(id_pasien).child(idriwayatpenyakit).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -187,8 +135,8 @@ public class ListVerivikasiHewanBerobat extends AppCompatActivity {
                         holder.mView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                Intent intent = new Intent(ListVerivikasiHewanBerobat.this,DetailVerifikasi.class);
-                                intent.putExtra("id_rekam_medis", idrekammedis);
+                                Intent intent = new Intent(ListHewanRiwayatPenyakit.this,RiwayatPenyakit.class);
+                                intent.putExtra("id_riwayatpenyakit", idriwayatpenyakit);
                                 intent.putExtra("id_pasien", id_pasien);
                                 startActivity(intent);
                                /* CharSequence options[] = new CharSequence[]{"Daftar Berobat","Lihat Detail","Hapus"};
@@ -234,32 +182,40 @@ public class ListVerivikasiHewanBerobat extends AppCompatActivity {
                     }
                 });
 
+
             }
 
             @NonNull
             @Override
-            public ListDaftarHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public ListHewanRiwayatPenyakit.ListDaftarHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View mView = LayoutInflater.from(parent.getContext()).inflate(R.layout.hewan_single_layout,parent,false);
                 return new ListDaftarHolder(mView);
             }
         };
+        Log.i("adapter count :",""+adapter.getItemCount() );
+       FirebaseDatabase.getInstance().getReference().child("RiwayatPenyakit").child(id_pasien).addValueEventListener(new ValueEventListener() {
+           @Override
+           public void onDataChange(DataSnapshot dataSnapshot) {
+               long jumlah = dataSnapshot.getChildrenCount();
+               if (jumlah>0){
+                 /*  Toast.makeText(ListHewanRiwayatPenyakit.this, ""+jumlah, Toast.LENGTH_LONG).show();*/
 
-        FirebaseDatabase.getInstance().getReference().child("RekamMedis").child(id_pasien).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                long jumlah = dataSnapshot.getChildrenCount();
-                if (jumlah>0){
-                    mListView.setAdapter(adapter);
-                }else {
-                    notifnull.setVisibility(View.VISIBLE);
-                }
-            }
+                   mListView.setAdapter(adapter);
+               }else {
+                   notifnull.setVisibility(View.VISIBLE);
+               }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+           }
 
-            }
-        });
+           @Override
+           public void onCancelled(DatabaseError databaseError) {
+
+           }
+       });
+
+
+
+
 
     }
 
@@ -274,7 +230,8 @@ public class ListVerivikasiHewanBerobat extends AppCompatActivity {
         mProgressDialog.show();*/
 
 
-        adapter.startListening();
+            adapter.startListening();
+
 
 
 

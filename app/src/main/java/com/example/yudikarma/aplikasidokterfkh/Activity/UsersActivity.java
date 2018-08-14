@@ -48,6 +48,7 @@ public class UsersActivity extends AppCompatActivity {
 
     private ProgressDialog mProgressDialog;
     private ImageView statusOnline;
+    private TextView notifnull;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,8 @@ public class UsersActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("List Pasien");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         statusOnline = (ImageView) findViewById(R.id.user_single_online_icon);
+
+        notifnull = findViewById(R.id.notifnulluser);
 
         mListView = (RecyclerView) findViewById(R.id.user_list);
         mListView.setHasFixedSize(true);
@@ -121,7 +124,7 @@ public class UsersActivity extends AppCompatActivity {
                                         @Override
                                         public void onDataChange(DataSnapshot dataSnapshot) {
                                             if (dataSnapshot.hasChild(user_id)){
-                                                Intent intent = new Intent(UsersActivity.this,ListVerivikasiHewanBerobat.class);
+                                                Intent intent = new Intent(UsersActivity.this,ListHewanRiwayatPenyakit.class);
                                                 intent.putExtra("user_id", user_id);
                                                 startActivity(intent);
 
@@ -160,7 +163,22 @@ public class UsersActivity extends AppCompatActivity {
             }
 
         };
-        mListView.setAdapter(adapter);
+        FirebaseDatabase.getInstance().getReference().child("Users").child("Pasien").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                long jumlah = dataSnapshot.getChildrenCount();
+                if (jumlah>0){
+                    mListView.setAdapter(adapter);
+                }else {
+                    notifnull.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
     @Override
     protected void onStart() {

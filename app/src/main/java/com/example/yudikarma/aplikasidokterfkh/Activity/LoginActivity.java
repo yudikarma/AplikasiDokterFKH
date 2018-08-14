@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String email = mEmailView.getText().toString();
                 final String password = mPasswordView.getText().toString();
-                if (!TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
+                if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)){
                     mpProgressDialog.setTitle("login..");
                     mpProgressDialog.setMessage("we are try connect your acount..");
                     mpProgressDialog.setCanceledOnTouchOutside(false);

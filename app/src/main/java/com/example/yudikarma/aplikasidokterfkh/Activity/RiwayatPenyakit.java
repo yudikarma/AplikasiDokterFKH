@@ -2,14 +2,11 @@ package com.example.yudikarma.aplikasidokterfkh.Activity;
 
 import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,9 +24,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DetailVerifikasi extends AppCompatActivity {
-
-    private TextView tnamapemilik,tnohp,tnamadokter,tgejala,tdugaan,ttanggalrekam,talamatpemilik,tnamahewan,tjenishewan,tjeniskelamin,tras,twarnabulu,tumur,tttl;
+public class RiwayatPenyakit extends AppCompatActivity {
+    private TextView tnamapemilik,tnohp,tnamadokter,tgejala,tdugaan,ttanggalrekam,talamatpemilik,tnamahewan,tjenishewan,tjeniskelamin,tras,twarnabulu,tumur,tttl,txtdiagnosapenyakit,txtterapipenyakit,txtdokterperiksa,txttanggalperiksa;
     private DatabaseReference mRootDatabaseReference;
     private TextInputEditText penyakitdiderita,terapi;
     private Button simpan,kembali;
@@ -44,13 +40,11 @@ public class DetailVerifikasi extends AppCompatActivity {
     private String tanggalperiksa ;
     private String getSterapi;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_verifikasi);
-/*        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
+        setContentView(R.layout.activity_riwayat_penyakit);
+
         mRootDatabaseReference = FirebaseDatabase.getInstance().getReference();
         toolbar = findViewById(R.id.toolbardetailverifikasi);
         setSupportActionBar(toolbar);
@@ -76,15 +70,15 @@ public class DetailVerifikasi extends AppCompatActivity {
         tumur = findViewById(R.id.dumur);
         tttl = findViewById(R.id.dttl);
 
-        lpenyakit = findViewById(R.id.lpenyakitdiderita);
-        lterapi = findViewById(R.id.lterapi);
-        lpenyakit.setVisibility(View.GONE);
-        lterapi.setVisibility(View.GONE);
-        simpan.setVisibility(View.GONE);
+
         diisisaat = findViewById(R.id.isisaarpemeriksaan);
+        txtdiagnosapenyakit = findViewById(R.id.dtxtdiagnosapenyakit);
+        txtterapipenyakit = findViewById(R.id.dtxtterapipenyakit);
+        txtdokterperiksa = findViewById(R.id.dtxtnamadokterperiksa);
+        txttanggalperiksa = findViewById(R.id.dtxttanggalperiksa);
 
 
-        final String idrekammedis = getIntent().getStringExtra("id_rekam_medis");
+        final String idriwayatpenyakit = getIntent().getStringExtra("id_riwayatpenyakit");
         final  String id_pasien = getIntent().getStringExtra("id_pasien");
 
 
@@ -105,7 +99,7 @@ public class DetailVerifikasi extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               /* Intent intent = new Intent(DetailVerifikasi.this,ListVerivikasiHewanBerobat.class);
+               /* Intent intent = new Intent(RiwayatPenyakit.this,ListVerivikasiHewanBerobat.class);
                 intent.putExtra("user_id", id_pasien);
                 startActivity(intent);*/
                 finish();
@@ -118,7 +112,7 @@ public class DetailVerifikasi extends AppCompatActivity {
 
 
 
-        FirebaseDatabase.getInstance().getReference().child("RekamMedis").child(id_pasien).child(idrekammedis).addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference().child("RiwayatPenyakit").child(id_pasien).child(idriwayatpenyakit).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 final String snamapemilik = dataSnapshot.child("nama_pemilik").getValue().toString();
@@ -129,14 +123,14 @@ public class DetailVerifikasi extends AppCompatActivity {
                 final String salamatpemilik = dataSnapshot.child("alamat_pemilik").getValue().toString();
                 final String stanggalrekam  = dataSnapshot.child("tanggal_rekam").getValue().toString();
                 final String idhewan = dataSnapshot.child("idhewan").getValue().toString();
-                 final String terapi2 = dataSnapshot.child("terapi").getValue().toString();
+                final String terapi2 = dataSnapshot.child("terapi").getValue().toString();
 
 
 
                 FirebaseDatabase.getInstance().getReference().child("Hewan").child(id_pasien).child(idhewan).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                       final String snamahewan = dataSnapshot.child("nama_hewan").getValue().toString();
+                        final String snamahewan = dataSnapshot.child("nama_hewan").getValue().toString();
                         final String sjenishewan = dataSnapshot.child("jenis_hewan").getValue().toString();
                         final String sjeniskelamin = dataSnapshot.child("jenis_lk").getValue().toString();
                         final String sras = dataSnapshot.child("ras").getValue().toString();
@@ -163,86 +157,19 @@ public class DetailVerifikasi extends AppCompatActivity {
                         tumur.setText(sumur);
                         tttl.setText(sttl);
                         /*talamathewan.setText(salamathewan);*/
-                        FirebaseDatabase.getInstance().getReference().child("RekamMedis").child(id_pasien).addValueEventListener(new ValueEventListener() {
+                        FirebaseDatabase.getInstance().getReference().child("RiwayatPenyakit").child(id_pasien).child(idriwayatpenyakit).addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                if (terapi2.equals("default")) {
+                                namadokter_periksa = dataSnapshot.child("namadokter_periksa").getValue().toString();
+                                tanggalperiksa = dataSnapshot.child("tanggal_periksa").getValue().toString();
+                                diagnosa = dataSnapshot.child("penyakit_di_derita").getValue().toString();
+                                getSterapi = dataSnapshot.child("terapi").getValue().toString();
 
-                                    lpenyakit.setVisibility(View.VISIBLE);
-                                    lterapi.setVisibility(View.VISIBLE);
-                                    simpan.setVisibility(View.VISIBLE);
-                                    diisisaat.setVisibility(View.VISIBLE);
+                                txtdokterperiksa.setText(namadokter_periksa);
+                                txttanggalperiksa.setText(tanggalperiksa);
+                                txtdiagnosapenyakit.setText(diagnosa);
+                                txtterapipenyakit.setText(getSterapi);
 
-
-                                    simpan.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View view) {
-                                            spenyakitdiderita = penyakitdiderita.getText().toString();
-                                            sterapi = terapi.getText().toString();
-
-                                            if (!spenyakitdiderita.isEmpty() && !sterapi.isEmpty()) {
-
-
-                                                DatabaseReference newNotificationRef = mRootDatabaseReference.child("RiwayatPenyakit").child(id_pasien).push();
-                                                String idriwayatpenyakit = newNotificationRef.getKey();
-
-                                                HashMap<String, String> riwayatpenyakit = new HashMap<>();
-                                                riwayatpenyakit.put("nama_pemilik", snamapemilik);
-                                                riwayatpenyakit.put("no_hp", snohp);
-                                                riwayatpenyakit.put("nama_dokter", snamadokter);
-                                                riwayatpenyakit.put("gejala", sgejala);
-                                                riwayatpenyakit.put("dugaan", sdugaan);
-                                                riwayatpenyakit.put("alamat_pemilik", salamatpemilik);
-                                                riwayatpenyakit.put("tanggal_rekam", stanggalrekam);
-                                                riwayatpenyakit.put("idhewan", idhewan);
-                                                riwayatpenyakit.put("penyakit_di_derita", spenyakitdiderita);
-                                                riwayatpenyakit.put("terapi", sterapi);
-                                                riwayatpenyakit.put("tanggal_periksa", currentDate);
-                                                String iddokter_periksa = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-                                                riwayatpenyakit.put("iddokter_periksa", iddokter_periksa);
-                                                riwayatpenyakit.put("namadokter_periksa", namadokter_periksa);
-
-                                                Map pussMap = new HashMap();
-                                                Map simpanriwayatpenyakit = new HashMap();
-                                    /*simpanriwayatpenyakit.put("RekamMedis/"+id_pasien+"/"+idrekammedis, null);*
-                                    //BIKIN ERROR LISTVERIVIKASIHEWAN BEROBAT wkwkkwk
-                                     */
-                                                simpanriwayatpenyakit.put("RekamMedis/" + id_pasien + "/" + idrekammedis, riwayatpenyakit);
-                                                simpanriwayatpenyakit.put("RiwayatPenyakit/" + id_pasien + "/" + idriwayatpenyakit, riwayatpenyakit);
-
-
-
-                                                mRootDatabaseReference.updateChildren(simpanriwayatpenyakit, new DatabaseReference.CompletionListener() {
-                                                    @Override
-                                                    public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                                                        if (databaseError == null) {
-                                               /* ListVerivikasiHewanBerobat listVerivikasiHewanBerobat = new ListVerivikasiHewanBerobat();
-                                                listVerivikasiHewanBerobat.remove();*/
-                                                            /* FirebaseDatabase.getInstance().getReference().child("RekamMedis").child(id_pasien).child(idrekammedis).getRef().removeValue();*/
-                                                            Toast.makeText(DetailVerifikasi.this, "Berhasil Menyimpan Riwayat Penyakit", Toast.LENGTH_SHORT).show();
-                                                            Intent intent = new Intent(DetailVerifikasi.this, MainActivity.class);
-                                                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                                            startActivity(intent);
-                                                            finish();
-
-                                                        } else {
-                                                            String error = databaseError.getMessage();
-                                                            Toast.makeText(DetailVerifikasi.this, error, Toast.LENGTH_LONG).show();
-                                                        }
-
-
-                                                    }
-                                                });
-
-                                            } else {
-                                                Toast.makeText(DetailVerifikasi.this, "Semua field harus di isi", Toast.LENGTH_SHORT).show();
-                                            }
-                                        }
-                                    });
-                                }else {
-                                    Toast.makeText(DetailVerifikasi.this, "Diagnosa Penyakit telah di Input sebelumnya", Toast.LENGTH_LONG).show();
-                                }
 
                             }
 
@@ -257,7 +184,7 @@ public class DetailVerifikasi extends AppCompatActivity {
                         kembali.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                Intent intent = new Intent(DetailVerifikasi.this,ListVerivikasiHewanBerobat.class);
+                                Intent intent = new Intent(RiwayatPenyakit.this,ListVerivikasiHewanBerobat.class);
                                 intent.putExtra("user_id", id_pasien);
                                 startActivity(intent);
                                 finish();
@@ -282,7 +209,5 @@ public class DetailVerifikasi extends AppCompatActivity {
 
             }
         });
-
-
     }
 }

@@ -59,6 +59,7 @@ public class FriendsFragment extends Fragment {
     private String mCurrent_user_id;
     private ProgressDialog mProgressDialog;
     private DatabaseReference mUserRef;
+    private TextView notifnull;
 
 
     //private View mMainView;
@@ -72,6 +73,7 @@ public class FriendsFragment extends Fragment {
         mFriendsList =  rootView.findViewById(R.id.friends_list);
         mAuth = FirebaseAuth.getInstance();
         statusOnline = (ImageView) rootView.findViewById(R.id.user_single_online_icon);
+        notifnull = rootView.findViewById(R.id.notifnullfriends);
 
         mCurrent_user_id = mAuth.getCurrentUser().getUid();
         mUserRef = FirebaseDatabase.getInstance().getReference().child("Users").child("Dokters").child(mAuth.getCurrentUser().getUid());
@@ -121,7 +123,7 @@ public class FriendsFragment extends Fragment {
                         holder.mView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                CharSequence options[] = new CharSequence[]{"Open Profile","Send Message"};
+                                CharSequence options[] = new CharSequence[]{"Send Message","Open Profil","Unfriends"};
                                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 
                                 builder.setTitle("Select Options");
@@ -129,19 +131,24 @@ public class FriendsFragment extends Fragment {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         //click event for each item
-                                        if (i == 0){
+                                        if (i == 1){
                                             Intent profilIntent = new Intent(getContext(),DetailUser.class);
                                             // i.putExtra("user_id",list_user_id);
                                             profilIntent.putExtra("user_id",list_user_id );
                                             startActivity(profilIntent);
                                         }
-                                        if (i == 1){
+                                        if (i == 0){
                                             Intent profilIntent = new Intent(getContext(),Tampung_chatActivity.class);
                                             // i.putExtra("user_id",list_user_id);
                                             profilIntent.putExtra("user_id",list_user_id );
                                             profilIntent.putExtra("user_name",username);
                                             startActivity(profilIntent);
 
+                                        }if (i == 2){
+                                            Intent profilIntent = new Intent(getContext(),ProfilActivity.class);
+                                            // i.putExtra("user_id",list_user_id);
+                                            profilIntent.putExtra("user_id",list_user_id );
+                                            startActivity(profilIntent);
                                         }
                                     }
                                 });
@@ -168,7 +175,24 @@ public class FriendsFragment extends Fragment {
             }
         };
 
-        mFriendsList.setAdapter(adapter);
+        FirebaseDatabase.getInstance().getReference().child("Friends").child(mCurrent_user_id).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                long jumlah = dataSnapshot.getChildrenCount();
+                if (jumlah>0){
+                    mFriendsList.setAdapter(adapter);
+                }else {
+                    notifnull.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
 
         // Inflate the layout for this fragment
         return rootView;
